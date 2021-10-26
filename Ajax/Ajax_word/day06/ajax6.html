@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax网络超时服务   时间到后自动取消请求</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 200px;
+            border: 1px solid royalblue;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送请求</button>
+    <div id='result'></div>
+    <script>
+        const btn = document.getElementsByTagName('button')[0];
+        const result = document.getElementById('result');
+        // 绑定事件
+        btn.onclick = function(){
+            
+            
+            //1创建对象
+            const xhr = new XMLHttpRequest();
+
+            // 超时设置2s
+            xhr.timeout = 2000;
+            // 超时时的回调
+            xhr.ontimeout = function(){
+                // 你设置的是三秒后显示，但只给了两秒
+                alert('网络异常，请稍后重试')
+            }
+            // 网络异常回调
+            xhr.onerror = function(){
+                alert('你的网络似乎出现了一些问题')
+            }
+            //2初始化  设置请求留下和请求路径
+            xhr.open('POST','http://127.1.1.0:8000/delay');
+            // 3.发送
+            xhr.send('a=100&lalalall1111111111');
+            //4.事件绑定
+            xhr.onreadystatechange = function(){
+                // 5.判断
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        // 6.处理服务端返回的结果
+                        result.innerHTML = xhr.response;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!-- 案例要求
+    当鼠标进入div后发post请求
+    然后将响应体在div中呈现
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 200px;
+            border: solid 1px #90b;
+        }
+    </style>
+</head>
+<body>
+    <div id='result'></div>
+    <script>
+        // 获取元素对象
+        const result = document.getElementById('result');
+        // 绑定事件
+        result.addEventListener('mouseover',function(){
+            // console.log('ggg');
+            //1创建对象
+            const xhr = new XMLHttpRequest();
+            //2初始化  设置请求留下和请求路径
+            xhr.open('POST','http://127.1.1.0:8000/server');
+            // 3.发送
+            xhr.send('a=100&lalalall1111111111');
+            //4.事件绑定
+            xhr.onreadystatechange = function(){
+                // 5.判断
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        // 6.处理服务端返回的结果
+                        result.innerHTML = xhr.response;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

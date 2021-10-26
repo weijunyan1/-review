@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的返回值</title>
+    <script>
+        // 函数是做某件事情或实现某种功能的
+        function cook(aru){
+            console.log(aru);
+        }
+        cook('大肘子')
+
+        // return 
+        //目的：
+        //
+
+        //语法：
+        //函数的返回值格式
+        // function 函数名(){
+        //     return 需要返回的结果
+        // }
+        // 函数名()
+
+        //注意
+        //我们函数只是能实现某种功能，最终结果还是要返回给函数的调用者。函数名()通过return实现
+        //只要函数遇到return，就把后面的结果返回给哈桑农户的调用者 .此时/：函数名() = return后面的结果
+        // 代码验证：
+        function ccc(){
+            return 6666
+        }
+        ccc()//ccc() = 666
+        console.log(ccc())//666
+
+        //例子：
+        function ckk(aru){
+            return aru
+        }
+        console.log(ckk('猫猫'));
+        function sss(num1,num2){
+            return num1+num2
+        }
+        console.log(sss(1,2));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请求超时，网络异常</title>
+    <!-- 2.样式 -->
+    <style>
+        #result{
+            width: 200px;
+            height: 200px;
+            border: 6px solid rgb(183, 121, 219);
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. -->
+    <button>点击发送请求</button>
+    <div id='result'></div>
+    <script>
+        // 3.获取元素对象
+        const result = document.getElementById('result');
+        // 4.给元素对象绑定事件
+        result.addEventListener('mouseover',function(){
+            // 5.创建对象    
+            //XMLHttpRequest()提供了对 HTTP 协议的完全的访问，包括做出 POST 和  GET 请求的能力。
+            const xhr = new XMLHttpRequest();
+            // 6.对象初始化     设置请求方式和请求路径
+            xhr.open('post','http://127.0.0.1:8000/server')
+            // 7.发送
+            xhr.send()
+            // 8.事件绑定
+            xhr.onreadystatechange = function(){
+                // 9.判断
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status <300){
+                        // 10处理返回结果 
+                        result.innerHTML = xhr.response
+                    }
+                }
+            }
+
+        })
+
+    </script>
+</body>
+</html>
